@@ -1,0 +1,78 @@
+<!-- main app container -->
+<div class="card m-3">
+	<div class="card-body">
+		<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+			<div class="form-row">
+				<div class="form-group col">
+					<label>Тип</label>
+                    <select formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                        <option value=""></option>
+                        <option value="Паспорт">Паспорт</option>
+                        <option value="Загран паспорт">Загран паспорт</option>
+                        <option value="СНИЛС">СНИЛС</option>
+                    </select>
+                    <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                        <div *ngIf="f.title.errors.required">Тип обязателен</div>
+                    </div>
+                </div>
+                <div class="form-group col-5">
+                    <label>Серия</label>
+                    <input type="text" formControlName="serial" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.serial.errors }" />
+                    <div *ngIf="submitted && f.serial.errors" class="invalid-feedback">
+                        <div *ngIf="f.serial.errors.required">Серия обязательна</div>
+                    </div>
+                </div>
+                <div class="form-group col-5">
+                    <label>Номер</label>
+                    <input type="text" formControlName="docnumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.docnumber.errors }" />
+                    <div *ngIf="submitted && f.docnumber.errors" class="invalid-feedback">
+                        <div *ngIf="f.docnumber.errors.required">Номер обязателен</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Код подразделения</label>
+                <input type="text" formControlName="code" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.code.errors }" />
+                <div *ngIf="submitted && f.code.errors" class="invalid-feedback">
+                    <div *ngIf="f.code.errors.required">Код подразделения обязателен</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>Кем выдан</label>
+                    <input type="text" formControlName="whom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.whom.errors }" />
+                    <div *ngIf="submitted && f.whom.errors" class="invalid-feedback">
+                        <div *ngIf="f.whom.errors.required">Это поле обязательно</div>
+                        <div *ngIf="f.whom.errors.minlength">Введите не менее 6 символов</div>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label>Место рождения</label>
+                    <input type="text" formControlName="birthplace" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.birthplace.errors }" />
+                    <div *ngIf="submitted && f.birthplace.errors" class="invalid-feedback">
+                    </div>
+                </div>
+            </div>
+
+           <div class="form-group">
+             <label>Дата выдачи</label>
+            <div class="input-group">
+              <input formControlName="data" class="form-control" placeholder="yyyy-mm-dd"
+                    name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Отправить</button>
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Отменить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- credits -->
+<div class="text-center">
+  
+</div>
